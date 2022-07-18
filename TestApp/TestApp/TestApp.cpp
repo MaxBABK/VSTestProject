@@ -3,9 +3,41 @@
 
 #include <iostream>
 
+float cube(float num);
+
 int main()
 {
-    std::cout << "Hello World!\n";
+    float num1;
+    float num2;
+    float num3;
+
+    std::cout << "Enter a number\n";
+
+    std::cin >> num1;
+
+    std::cout << "Enter a number\n";
+
+    std::cin >> num2;
+
+    std::cout << "Enter a number\n";
+
+    std::cin >> num3;
+
+    float sum = num1 + num2 + num3;
+
+    std::cout << "sum: " << sum << "\n";
+
+    std::cout << "average: " << sum/3 << "\n";
+
+    std::cout << "cube1: " << cube(num1) << "\n";
+    std::cout << "cube2: " << cube(num2) << "\n";
+    std::cout << "cube3: " << cube(num3) << "\n";
+}
+
+float cube(float num)
+{
+
+    return num * num * num;
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
