@@ -3,9 +3,15 @@
 
 #include <iostream>
 
+#include "Car.h"
+
 bool IsLeapYear(int year);
 void Factorize(int value);
 int GetUserInput();
+
+template<typename T>
+T ArrayMaxVal(T values[], int size);
+
 
 int main()
 {
@@ -20,6 +26,16 @@ int main()
     std::cout << IsLeapYear(2400) << std::endl;
 
     Factorize(GetUserInput());
+
+    int ints[] = {0, 1};
+    float floats[] = {0.0f, -1.5F, 3, 3.1F};
+    double doubles[] = {-1.5, -33, -3.1 };
+    std::cout << ArrayMaxVal(ints, 2) << std::endl;
+    std::cout << ArrayMaxVal(floats, 4) << std::endl;
+    std::cout << ArrayMaxVal(doubles, 3) << std::endl;
+    
+    Car myCar;
+
 }
 
 bool IsLeapYear(int year)
@@ -52,7 +68,7 @@ int GetUserInput()
         if (std::cin.fail() || inputValue < 0) 
         {
             std::cin.clear();
-            std::cin.ignore(99, '\n');
+            std::cin.ignore(999, '\n');
             std::cout << "Not a valid number!" << std::endl;
         }
         else
@@ -90,6 +106,21 @@ void Factorize(int value)
     }
 }
 
+// Assumes array is greater than size 0
+template<typename T>
+T ArrayMaxVal(T values[], int size)
+{
+    T maxVal = values[0];
+    for (int i = 1; i < size; i++)
+    {
+        if (values[i] > maxVal)
+        {
+            maxVal = values[i];
+        }
+    }
+
+    return maxVal;
+}
 
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
