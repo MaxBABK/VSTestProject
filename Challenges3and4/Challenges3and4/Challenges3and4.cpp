@@ -4,6 +4,8 @@
 #include <iostream>
 
 bool IsLeapYear(int year);
+void Factorize(int value);
+int GetUserInput();
 
 int main()
 {
@@ -16,6 +18,8 @@ int main()
 
     std::cout << IsLeapYear(2000) << std::endl;
     std::cout << IsLeapYear(2400) << std::endl;
+
+    Factorize(GetUserInput());
 }
 
 bool IsLeapYear(int year)
@@ -34,6 +38,58 @@ bool IsLeapYear(int year)
 
     return isLeapYear;
 }
+
+int GetUserInput()
+{
+    int inputValue;
+
+    std::cout << "Enter a positive integer" << std::endl;
+
+    do
+    {
+        std::cin >> inputValue;
+
+        if (std::cin.fail() || inputValue < 0) 
+        {
+            std::cin.clear();
+            std::cin.ignore(99, '\n');
+            std::cout << "Not a valid number!" << std::endl;
+        }
+        else
+        {
+            break;
+        }
+    }
+    while (true);
+    return inputValue; 
+}
+
+
+void Factorize(int value)
+{
+    if (value <= 1)
+        return;
+
+    float root = sqrt(value);
+
+    // Check from 2 to square root of n
+
+    for (int i = 2; i <= root; i++)
+    {
+        while (value % i == 0)
+        {
+            std::cout << i << std::endl;
+            value /= i;
+
+        }
+        root = sqrt(value);
+    }
+    if (value != 1)
+    {
+        std::cout << value << std::endl;
+    }
+}
+
 
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
