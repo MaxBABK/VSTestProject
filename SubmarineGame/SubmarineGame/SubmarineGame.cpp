@@ -28,8 +28,11 @@ int main()
         {
             break;
         }
-        sub.RotateTo(enemies.at(closestEnemy).GetLocationX(), enemies.at(closestEnemy).GetLocationY());
+        Enemy& enemyToKill = enemies.at(closestEnemy);
+        sub.RotateTo(enemyToKill.location.x, enemyToKill.location.y);
         sub.Shoot();
+        enemyToKill.Die();
+        enemies.erase(enemies.begin() + closestEnemy);
     }
    
     // rotate sub
@@ -54,10 +57,11 @@ int GetHighestPriorityTarget(std::vector<Enemy> enemies, Submarine& sub)
     for (int i = 0; i < enemies.size(); i++)
     {
         Enemy& currEnemy = enemies.at(i);
+
         if (currEnemy.GetPriority() <= highestPrio)
         {
-            float rotationalDistance = GetRotationalDistance(sub.GetRotationX(), sub.GetRotationY(), currEnemy.GetLocationX(), currEnemy.GetLocationY());
-            if ( shortestDistance < 0 || rotationalDistance < shortestDistance )
+            float rotationalDistance = GetRotationalDistance(sub.heading.x, sub.heading.y, currEnemy.location.x, currEnemy.location.y);
+            if (currEnemy.GetPriority() < highestPrio || (shortestDistance < 0 || rotationalDistance < shortestDistance) )
             {
                 shortestDistance = rotationalDistance;
                 highestPrio = currEnemy.GetPriority();

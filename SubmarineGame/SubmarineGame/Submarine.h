@@ -1,16 +1,15 @@
 #pragma once
-class Submarine
+
+#include "Ship.h"
+
+class Submarine : public Ship
 {
 private:
-	//Quaternion
-	float directionX;
-	float directionY;
+
 
 public:
-	void RotateTo(float targetLocationX, float targetLocationY) { directionX = targetLocationX; directionY = targetLocationY; }
+	
 	void Shoot() {};
 
-	float GetRotationX() { return directionX;  }
-	float GetRotationY() { return directionY; }
 };
 
