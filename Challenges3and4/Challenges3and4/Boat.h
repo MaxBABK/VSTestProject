@@ -1,11 +1,10 @@
 #pragma once
 #include "Vehicle.h"
-class Car :
+class Boat :
     public Vehicle
 {
 
 public:
     void Drive(float mileage) override;
-
 };
 

@@ -4,6 +4,8 @@
 #include <iostream>
 
 #include "Car.h"
+#include "Airplane.h"
+#include "Boat.h"
 
 bool IsLeapYear(int year);
 void Factorize(int value);
@@ -35,6 +37,12 @@ int main()
     std::cout << ArrayMaxVal(doubles, 3) << std::endl;
     
     Car myCar;
+    Boat myBoat;
+    Airplane myAirplane;
+
+    myCar.Drive(10.5F);
+    myBoat.Drive(100.5F);
+    myAirplane.Drive(1000.5F);
 
 }
 
