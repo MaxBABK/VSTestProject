@@ -72,6 +72,7 @@ int GetHighestPriorityTarget(std::vector<Enemy> enemies, Submarine& sub)
 float GetRotationalDistance(float x1, float y1, float x2, float y2)
 {
     // Do math stuff with cosine
+    return 0;
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
