@@ -3,6 +3,22 @@
 
 #include <iostream>
 
+template<class T>
+void GetValueFromUser()
+{
+    T x;
+
+    std::cout << "Enter a value " << std::endl;
+    std::cin >> x;
+
+    T* xptr = new T(x);
+
+    std::cout << "Value x: " << *xptr << " stored at " << xptr << std::endl;
+
+    delete xptr;
+}
+
+
 int main()
 {
 
@@ -29,6 +45,9 @@ int main()
     
     delete ptrA;
     delete ptrB;
+
+
+    GetValueFromUser();
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
