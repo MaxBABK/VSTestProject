@@ -5,7 +5,30 @@
 
 int main()
 {
-    std::cout << "Hello World!\n";
+
+    //Write a program that asks the user to enter integers to be stored in the variables 'a' and 'b'.
+    //Then create two integer pointers named ptrA and ptrB.Assign the values of 'a' and 'b' to ptrA and ptrB, and display them.
+    //Take an input variable and display the same value by pointer.
+    int a;
+    int b;
+
+    std::cout << "Enter integer A\n";
+
+    std::cin >> a;
+
+
+    std::cout << "Enter integer B\n";
+    std::cin >> b;
+    
+
+    int* ptrA = new int(a);
+    int* ptrB = new int(b);
+
+    std::cout << "Value a: " << *ptrA << " stored at " << ptrA << std::endl;
+    std::cout << "Value b: " << *ptrB << " stored at " << ptrB << std::endl;
+    
+    delete ptrA;
+    delete ptrB;
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
