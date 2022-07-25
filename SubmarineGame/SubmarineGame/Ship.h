@@ -12,10 +12,11 @@ public:
 	Point heading;
 	Point location;
 
-	Ship () { }
-	Ship(Point h, Point l) { heading.x = h.x; heading.y = h.y; location.x = l.x; location.y = l.y; }
+	Ship();
 
-	void RotateTo(float targetRotationX, float targetRotationY) { heading.x = targetRotationX; heading.y = targetRotationY; }
+	Ship(Point h, Point l);
+
+	void RotateTo(float targetRotationX, float targetRotationY);
 	
 };
 

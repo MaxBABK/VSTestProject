@@ -9,7 +9,10 @@ private:
 
 public:
 	
-	void Shoot() {};
+	Submarine();
+	~Submarine();
+
+	void Shoot();
 
 };
 
