@@ -10,6 +10,10 @@ private:
 
 public:
 
+	Enemy();
+	Enemy(int p, float x, float y);
+	~Enemy() {};
+
 	int GetPriority() { return priority; }
 	void Die() {}
 };

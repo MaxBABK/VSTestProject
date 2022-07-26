@@ -8,8 +8,13 @@
 #include <vector>
 #include <math.h> 
 
-void LaunchAttack();
-int GetHighestPriorityTarget(std::vector<Enemy> enemies, Submarine& sub);
+#define _CRTDBG_MAP_ALLOC
+#include <stdlib.h>
+#include <crtdbg.h>
+
+
+void LaunchAttack(std::vector<Enemy*> &enemies);
+int GetHighestPriorityTarget(std::vector<Enemy*> enemies, Submarine* sub);
 
 float GetRotationalDistance(float x1, float y1, float x2, float y2);
 
@@ -17,11 +22,11 @@ int main()
 {
     std::cout << "Hello World!\n";
 
-    std::vector<Enemy> enemies;
+    std::vector<Enemy*> enemies;
 
-    Submarine sub;
+    Submarine* sub = new Submarine();
 
-    LaunchAttack();
+    LaunchAttack(enemies);
     while (enemies.size() > 0)
     {
         int closestEnemy = GetHighestPriorityTarget(enemies, sub);
@@ -29,24 +34,47 @@ int main()
         {
             break;
         }
-        Enemy& enemyToKill = enemies.at(closestEnemy);
-        sub.RotateTo(enemyToKill.location.x, enemyToKill.location.y);
-        sub.Shoot();
-        enemyToKill.Die();
+        Enemy* enemyToKill = enemies.at(closestEnemy);
+        sub->RotateTo(enemyToKill->location->x, enemyToKill->location->y);
+        sub->Shoot();
+        enemyToKill->Die();
         enemies.erase(enemies.begin() + closestEnemy);
+        delete enemyToKill;
+        enemyToKill = nullptr;
     }
    
-    // rotate sub
-    // shoot at target, remove from list
+    enemies.clear();
+
+    delete sub;
+    sub = nullptr;
+
+
+    //Enemy* en1 = new Enemy();
+    //delete en1;
+    //en1 = nullptr;
+
+    //Enemy* en2 = new Enemy(1, 2.0F, 3.0F);
+    //delete en2;
+    //en2 = nullptr;
+
+
+    _CrtDumpMemoryLeaks();
 }
 
-void LaunchAttack()
+void LaunchAttack(std::vector<Enemy*>& enemies)
 {
     // place enemies
-
+    
+    enemies.push_back(new Enemy(50, 2.0f, -1.0f));
+    enemies.push_back(new Enemy(4, -3.0f, 1.0f));
+    enemies.push_back(new Enemy(4, 2.0f, 6.0f));
+    enemies.push_back(new Enemy(4, -5.0f, -4.0f));
+    //enemies.push_back(new Enemy(4, -5.0f, -4.0f));
+    //enemies.push_back(new Enemy(4, -5.0f, -4.0f));
+    //enemies.push_back(new Enemy(4, -5.0f, -4.0f));
 }
 
-int GetHighestPriorityTarget(std::vector<Enemy> enemies, Submarine& sub)
+int GetHighestPriorityTarget(std::vector<Enemy*> enemies, Submarine* sub)
 {
     // Get submarine direction
     // iterate over enemies, get rotational distances, but look at priority as well
@@ -57,15 +85,15 @@ int GetHighestPriorityTarget(std::vector<Enemy> enemies, Submarine& sub)
 
     for (int i = 0; i < enemies.size(); i++)
     {
-        Enemy& currEnemy = enemies.at(i);
+        Enemy* currEnemy = enemies.at(i);
 
-        if (currEnemy.GetPriority() <= highestPrio)
+        if (currEnemy->GetPriority() <= highestPrio)
         {
-            float rotationalDistance = GetRotationalDistance(sub.heading.x, sub.heading.y, currEnemy.location.x, currEnemy.location.y);
-            if (currEnemy.GetPriority() < highestPrio || (shortestDistance < 0 || rotationalDistance < shortestDistance) )
+            float rotationalDistance = GetRotationalDistance(sub->heading->x, sub->heading->y, currEnemy->location->x, currEnemy->location->y);
+            if (currEnemy->GetPriority() < highestPrio || (shortestDistance < 0 || rotationalDistance < shortestDistance) )
             {
                 shortestDistance = rotationalDistance;
-                highestPrio = currEnemy.GetPriority();
+                highestPrio = currEnemy->GetPriority();
                 prioEnemy = i;
             }
         }
@@ -76,10 +104,8 @@ int GetHighestPriorityTarget(std::vector<Enemy> enemies, Submarine& sub)
 
 float GetRotationalDistance(float x1, float y1, float x2, float y2)
 {
-
+    // not right
     float angle = acos((x1 * x2 + y1 * y2) / (sqrt(x1*x1 + y1*y1) * sqrt(x2*x2 + y2*y2)));
-
-
 
     return angle;
 }

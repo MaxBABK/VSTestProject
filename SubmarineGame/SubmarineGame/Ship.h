@@ -9,12 +9,14 @@ private:
 
 public:
 
-	Point heading;
-	Point location;
+	Point* heading;
+	Point* location;
 
 	Ship();
+	virtual ~Ship();
+	Ship(Point* h, Point* l);
 
-	Ship(Point h, Point l);
+
 
 	void RotateTo(float targetRotationX, float targetRotationY);
 	

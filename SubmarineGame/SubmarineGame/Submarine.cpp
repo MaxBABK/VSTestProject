@@ -1,7 +1,7 @@
 #include "Submarine.h"
 #include <iostream>
 
-Submarine::Submarine() : Ship(Point(0, 1), Point(0, 0))
+Submarine::Submarine() : Ship(new Point(0, 1), new Point(0, 0))
 {
 
 }
