@@ -2,10 +2,60 @@
 //
 
 #include <iostream>
+#include <algorithm>
+#include <vector>
+
+template<typename T>
+void SortVector(std::vector<T>& v);
+void PrintVector(std::vector <int> const& a);
+
+
+void FillVector(std::vector<int>& v, int amount, int max);
+void FillVector(std::vector<float>& v, int amount, int max);
 
 int main()
 {
     std::cout << "Hello World!\n";
+    std::vector<int> v;
+    FillVector(v, 10, 500);
+    PrintVector(v);
+    SortVector(v);
+    PrintVector(v);
+}
+
+
+template<typename T>
+void SortVector(std::vector<T>& v)
+{
+    std::sort(v.begin(), v.end());
+}
+
+
+void PrintVector(std::vector <int> const& a) {
+    std::cout << "The vector elements are : ";
+
+    for (unsigned int i = 0; i < a.size(); i++)
+        std::cout << a.at(i) << ' ';
+}
+
+void FillVector(std::vector<int>& v, int amount, int max)
+{
+    for (int i = 0; i < amount; i++)
+    {
+        v.push_back(std::rand()%max);
+
+    }
+
+}
+
+void FillVector(std::vector<float>& v, int amount, int max)
+{
+    for (int i = 0; i < amount; i++)
+    {
+
+
+    }
+
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
