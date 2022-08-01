@@ -92,6 +92,7 @@ int GetHighestPriorityTarget(std::vector<Enemy*> enemies, Submarine* sub)
             float rotationalDistance = GetRotationalDistance(sub->heading->x, sub->heading->y, currEnemy->location->x, currEnemy->location->y);
             if (currEnemy->GetPriority() < highestPrio || (shortestDistance < 0 || rotationalDistance < shortestDistance) )
             {
+                // Math issue here so need to see current values
                 shortestDistance = rotationalDistance;
                 highestPrio = currEnemy->GetPriority();
                 prioEnemy = i;
