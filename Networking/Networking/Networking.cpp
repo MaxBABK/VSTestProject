@@ -82,8 +82,8 @@ void ProcessServerEvents()
                     //strcpy(&packet->data[strlen("packet")], "foo");
                     /* Send the packet to the peer over channel id 0. */
                     /* One could also broadcast the packet by         */
-                    enet_host_broadcast(server, 0, packet);
-                    //enet_peer_send(event.peer, 0, packet);
+                    //enet_host_broadcast(server, 0, packet);
+                    enet_peer_send(event.peer, 0, packet);
 
                     /* One could just use enet_host_service() instead. */
                     //enet_host_service();
